@@ -1,0 +1,75 @@
+<nav class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+
+      <!-- Left section: Brand -->
+      <div class="flex-shrink-0">
+        <%= link_to root_path, class: "flex items-center space-x-2" do %>
+          <%= image_tag "pawplate_logo.png", alt: "PawPlate", class: "h-8 w-8" %>
+          <span class="text-xl font-semibold text-gray-800 hover:text-indigo-600">PawPlate</span>
+        <% end %>
+      </div>
+
+      <!-- Center: Navigation Links -->
+      <div class="hidden md:flex space-x-8">
+        <%= link_to "Home", root_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+        <%= link_to "Pets", root_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+        <%= link_to "Meal Planner", root_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+      </div>
+
+      <!-- Right: Auth / Profile -->
+      <div class="hidden md:flex items-center space-x-4">
+        <% if user_signed_in? %>
+          <span class="text-gray-600">Hi, <%= current_user.email.split('@').first.capitalize %>!</span>
+          <%= link_to "Profile", edit_user_registration_path, class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete,
+                        class: "bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-700" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path,
+                      class: "text-gray-700 hover:text-indigo-600 font-medium" %>
+          <%= link_to "Sign Up", new_user_registration_path,
+                      class: "bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-700" %>
+        <% end %>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-toggle"
+                class="text-gray-700 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+    <div class="px-4 py-3 space-y-2">
+      <%= link_to "Home", root_path, class: "block text-gray-700 hover:text-indigo-600 font-medium" %>
+      <%= link_to "Recipes", root_path, class: "block text-gray-700 hover:text-indigo-600 font-medium" %>
+      <%= link_to "Meal Planner", root_path, class: "block text-gray-700 hover:text-indigo-600 font-medium" %>
+      <% if user_signed_in? %>
+        <%= link_to "Profile", edit_user_registration_path, class: "block text-gray-700 hover:text-indigo-600 font-medium" %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete,
+                      class: "block w-full text-left bg-indigo-600 text-white px-3 py-2 rounded-md font-medium hover:bg-indigo-700" %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "block text-gray-700 hover:text-indigo-600 font-medium" %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "block bg-indigo-600 text-white px-3 py-2 rounded-md font-medium hover:bg-indigo-700" %>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<script>
+    // Simple JS toggle for mobile menu (can also do this with Stimulus)
+    document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.getElementById("mobile-menu-toggle");
+        const menu = document.getElementById("mobile-menu");
+        toggle.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    });
+</script>

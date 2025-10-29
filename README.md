@@ -27,3 +27,10 @@ Paw Plate is a meal planner web app for pets.
 
 [//]: # ()
 [//]: # (* ...)
+
+Deployment Steps to Heroku
+
+To deploy
+* git push heroku main 
+To migrate db
+* heroku run rails db:migrate

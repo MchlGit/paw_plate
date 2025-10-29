@@ -1,2 +1,11 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<main>
+  <div>
+  <% if user_signed_in? %>
+    <h1> Dashboard at a glance. </h1>
+    <p> All the cool things here.</p>
+  <% else %>
+    <h1> Join Paw Plate today!</h1>
+    <p> Create an account and get all the cool features.</p>
+  <% end %>
+  </div>
+</main>
