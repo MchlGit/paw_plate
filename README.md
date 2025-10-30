@@ -1,6 +1,6 @@
 # README
 
-Paw Plate is a meal planner web app for pets. 
+Paw Portion is a meal planner web app for pets. 
 
 * Ruby version : ruby 3.4.6
 * Rails version : Rails 8.0.3
